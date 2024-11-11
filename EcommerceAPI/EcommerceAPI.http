@@ -1,6 +1,66 @@
 @EcommerceAPI_HostAddress = http://localhost:5236
 
+###
+
+// Get WeatherForecast
 GET {{EcommerceAPI_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+// Get all users
+GET {{EcommerceAPI_HostAddress}}/login/
+Accept: application/json
+
+###
+
+// Get specific user by ID 1
+GET {{EcommerceAPI_HostAddress}}/login/1
+Accept: application/json
+
+###
+
+// Get specific user by ID 3
+GET {{EcommerceAPI_HostAddress}}/login/3
+Accept: application/json
+
+###
+
+// Authenticate if username / password exists 
+POST {{EcommerceAPI_HostAddress}}/login/Terrible_Theo
+Content-Type: application/json
+
+{
+    "username": "Terrible_Theo",
+    "password": "password123"
+}
+
+###
+
+// Authenticate if username / password exists 
+POST {{EcommerceAPI_HostAddress}}/login/send
+Content-Type: application/json
+
+###
+
+// Create new user
+POST {{EcommerceAPI_HostAddress}}/login/
+Content-Type: application/json
+
+{
+    "username": "Terrible_Theo",
+    "password": "password123"
+}
+
+###
+
+// Delete user by ID
+DELETE {{EcommerceAPI_HostAddress}}/login/3
+
+###
+
+// Send email message
+POST {{EcommerceAPI_HostAddress}}/login/send
+Content-Type: application/json
 
 ###
