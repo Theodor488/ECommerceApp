@@ -31,14 +31,17 @@ public static class ProductService
 
     public static List<Product> GetAll() => Products;
 
+    // Get
     public static Product? Get(int id) => Products.FirstOrDefault(p => p.ProductID == id);
 
-    public static void Register(Product product)
+    // Add
+    public static void Add(Product product)
     {
         product.ProductID = nextId++;
         Products.Add(product);
     }
 
+    // Delete
     public static void Delete(int id)
     {
         var product = Get(id);
@@ -48,6 +51,7 @@ public static class ProductService
         Products.Remove(product);
     }
 
+    // Update
     public static void Update(Product product)
     {
         var index = Products.FindIndex(p => p.ProductID == product.ProductID);
