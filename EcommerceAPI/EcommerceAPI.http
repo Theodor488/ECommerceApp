@@ -90,6 +90,7 @@ Content-Type: application/json
 }
 ###
 
+
 ###
 // Delete product by ID
 DELETE {{EcommerceAPI_HostAddress}}/product/3
