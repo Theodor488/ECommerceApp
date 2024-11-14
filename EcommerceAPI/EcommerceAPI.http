@@ -2,12 +2,6 @@
 
 ###
 
-// Get WeatherForecast
-GET {{EcommerceAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
-
 // Get all users
 GET {{EcommerceAPI_HostAddress}}/login/
 Accept: application/json
@@ -43,7 +37,7 @@ Content-Type: application/json
 
 ###
 
-// Create new user
+// Create/Register new user
 POST {{EcommerceAPI_HostAddress}}/login/
 Content-Type: application/json
 

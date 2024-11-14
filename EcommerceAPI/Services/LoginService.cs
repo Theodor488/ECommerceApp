@@ -55,7 +55,7 @@ public static class LoginService
         return false;
     }
 
-    public static void Add(User user)
+    public static void Register(User user)
     {
         user.Id = nextId++;
         Users.Add(user);

@@ -34,7 +34,7 @@ public class LoginController : ControllerBase
     [HttpPost]
     public IActionResult Create(User user)
     {            
-        LoginService.Add(user);
+        LoginService.Register(user);
         return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
     }
 
