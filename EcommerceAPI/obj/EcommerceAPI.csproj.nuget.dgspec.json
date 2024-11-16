@@ -1,33 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\v-tsuciu\\OneDrive - Microsoft\\Documents\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj": {}
+    "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\v-tsuciu\\OneDrive - Microsoft\\Documents\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj": {
+    "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\v-tsuciu\\OneDrive - Microsoft\\Documents\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj",
         "projectName": "EcommerceAPI",
-        "projectPath": "C:\\Users\\v-tsuciu\\OneDrive - Microsoft\\Documents\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj",
-        "packagesPath": "C:\\Users\\v-tsuciu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\v-tsuciu\\OneDrive - Microsoft\\Documents\\repos\\ECommerceApp\\EcommerceAPI\\obj\\",
+        "projectPath": "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj",
+        "packagesPath": "C:\\Users\\theod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\v-tsuciu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
+          "C:\\Users\\theod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\Microsoft SDKs\\Service Fabric\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -61,7 +50,13 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.10, )"
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -97,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
