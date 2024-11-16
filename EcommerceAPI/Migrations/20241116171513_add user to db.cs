@@ -5,7 +5,7 @@
 namespace EcommerceAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserToDB : Migration
+    public partial class addusertodb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

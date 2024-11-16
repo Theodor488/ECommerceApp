@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ECommerceAPI;
+using ECommerceAPI.Data;
 using System.Globalization;
 
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
@@ -12,9 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
