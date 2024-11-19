@@ -9,9 +9,7 @@ namespace ECommerceAPI.Models
         public int UserId { get; set; }
         [Required]
         public string UserName { get; set; }
-        [Display(Name = "First Name")]
         public string First_Name { get; set; }
-        [Display(Name = "Last Name")]
         public string Last_Name { get; set; }
         public string Password { get; set; }
         public string Gender { get; set; }
