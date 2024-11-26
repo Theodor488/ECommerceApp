@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mG7Q3jbhpzybViXjJflA+FMvspuj0ZGRVrSbZasBVpX2cYgS2oYGeJ6s5ScwM0vgLY/dmJfXsKY0nkuNNn8X5g==",
+  "dgSpecHash": "+8zS02IcZH11fq8M+/5ApLRFwHjuppwilADeC/fR9LIxLLdB/3f31+GptAZyCLj8AzMYSVcu1IE177NZFS+opA==",
   "success": true,
   "projectFilePath": "C:\\Users\\theod\\source\\repos\\ECommerceApp\\EcommerceAPI\\EcommerceAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\theod\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\theod\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\theod\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\theod\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
