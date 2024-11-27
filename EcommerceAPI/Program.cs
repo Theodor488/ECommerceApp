@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ECommerceAPI.Data;
 using System.Globalization;
+using EcommerceAPI.Repositories;
+using EcommerceAPI.Mappings;
 
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
@@ -14,6 +16,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 var app = builder.Build();
 
