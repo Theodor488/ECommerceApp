@@ -21,7 +21,7 @@ public class ProductController : ControllerBase
         ProductService.GetAll();
 
     [HttpGet("{id}")]
-    public ActionResult<Product> Get(int id)
+    public ActionResult<Product> Get(Guid id)
     {
         var product = ProductService.Get(id);
 
@@ -39,7 +39,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, Product product)
+    public IActionResult Update(Guid id, Product product)
     {
         if (id != product.ProductID)
             return BadRequest();
@@ -54,7 +54,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult Delete(Guid id)
     {
         var product = ProductService.Get(id);
     

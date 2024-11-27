@@ -6,9 +6,9 @@ namespace ECommerceAPI.Models
     public partial class Review
     {
         [Key]
-        public int ReviewID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
-        public Nullable<int> ProductID { get; set; }
+        public Guid ReviewID { get; set; }
+        public Nullable<Guid> CustomerID { get; set; }
+        public Nullable<Guid> ProductID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Review1 { get; set; }

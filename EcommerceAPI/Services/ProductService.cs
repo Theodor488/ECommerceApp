@@ -16,7 +16,6 @@ namespace ECommerceAPI.Services;
 public static class ProductService
 {
     static List<Product> Products { get; }
-    static int nextId = 3;
 
     // TODO!!!!! initialize OrderDetails and Reviews
 
@@ -24,25 +23,25 @@ public static class ProductService
     {
         Products = new List<Product>
         {
-            new Product { ProductID = 1, Name = "Jacket", CategoryID = 0, UnitPrice = 45.00m, ShortDescription = "winter jacket for snow and rain." },
-            new Product { ProductID = 2, Name = "Toy dinosaur", CategoryID = 1, UnitPrice = 23.50m, ShortDescription = "T-Rex toy for children ages 6-12." }
+            new Product { ProductID = Guid.NewGuid(), Name = "Jacket", CategoryID = Guid.NewGuid(), UnitPrice = 45.00m, ShortDescription = "winter jacket for snow and rain." },
+            new Product { ProductID = Guid.NewGuid(), Name = "Toy dinosaur", CategoryID = Guid.NewGuid(), UnitPrice = 23.50m, ShortDescription = "T-Rex toy for children ages 6-12." }
         };
     }
 
     public static List<Product> GetAll() => Products;
 
     // Get
-    public static Product? Get(int id) => Products.FirstOrDefault(p => p.ProductID == id);
+    public static Product? Get(Guid id) => Products.FirstOrDefault(p => p.ProductID == id);
 
     // Add
     public static void Add(Product product)
     {
-        product.ProductID = nextId++;
+        product.ProductID = Guid.NewGuid();
         Products.Add(product);
     }
 
     // Delete
-    public static void Delete(int id)
+    public static void Delete(Guid id)
     {
         var product = Get(id);
         if(product is null)

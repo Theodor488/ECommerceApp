@@ -18,19 +18,18 @@ namespace ECommerceAPI.Services;
 public static class LoginService
 {
     static List<User> Users { get; }
-    static int nextId = 3;
     static LoginService()
     {
         Users = new List<User>
         {
-            new User { Id = 1, Username = "theodor488", Password = "password" },
-            new User { Id = 2, Username = "gamer123", Password = "Day123" }
+            new User { Id = Guid.NewGuid(), Username = "theodor488", Password = "password" },
+            new User { Id = Guid.NewGuid(), Username = "gamer123", Password = "Day123" }
         };
     }
 
     public static List<User> GetAll() => Users;
 
-    public static User? Get(int id) => Users.FirstOrDefault(p => p.Id == id);
+    public static User? Get(Guid id) => Users.FirstOrDefault(p => p.Id == id);
 
     public static bool AuthenticateLoginCredentials(string input_username, string input_password, User curr_user)
     {
@@ -57,11 +56,11 @@ public static class LoginService
 
     public static void Register(User user)
     {
-        user.Id = nextId++;
+        user.Id = Guid.NewGuid();
         Users.Add(user);
     }
 
-    public static void Delete(int id)
+    public static void Delete(Guid id)
     {
         var user = Get(id);
         if(user is null)

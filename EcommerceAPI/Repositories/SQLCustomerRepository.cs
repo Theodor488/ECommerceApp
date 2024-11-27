@@ -17,5 +17,17 @@ namespace EcommerceAPI.Repositories
         {
             return await dbContext.Customers.ToListAsync();
         }
+
+        public async Task<Customer?> GetByGuidAsync(Guid id)
+        {
+            return await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+        }
+
+        public async Task<Customer> CreateAsync(Customer customer)
+        {
+            await dbContext.Customers.AddAsync(customer);
+            await dbContext.SaveChangesAsync();
+            return customer;
+        }
     }
 }

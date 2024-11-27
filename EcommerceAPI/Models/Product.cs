@@ -11,11 +11,11 @@ namespace ECommerceAPI.Models
             this.Reviews = new HashSet<Review>();
         }
         [Key]
-        public int ProductID { get; set; }
+        public Guid ProductID { get; set; }
         [Display(Name = "Product Name")]
         public string Name { get; set; }
         [Display(Name = "Category")]
-        public int CategoryID { get; set; }
+        public Guid CategoryID { get; set; }
         [Display(Name = "Unit Price")]
         public decimal UnitPrice { get; set; }
         [Display(Name = "Description")]

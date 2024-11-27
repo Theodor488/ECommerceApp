@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EcommerceAPI.Models.Domain;
-using ECommerceAPI.Models.DTO;
+using EcommerceAPI.Models.DTO;
 
 namespace EcommerceAPI.Mappings
 {
@@ -9,6 +9,7 @@ namespace EcommerceAPI.Mappings
         public AutoMapperProfiles()
         {
             CreateMap<Customer, CustomerDTO>().ReverseMap();
+            CreateMap<AddCustomerRequestDTO, Customer>().ReverseMap();
         }
     }
 }

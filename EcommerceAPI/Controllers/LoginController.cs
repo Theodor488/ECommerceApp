@@ -21,7 +21,7 @@ public class LoginController : ControllerBase
         LoginService.GetAll();
 
     [HttpGet("{id}")]
-    public ActionResult<User> Get(int id)
+    public ActionResult<User> Get(Guid id)
     {
         var user = LoginService.Get(id);
 
@@ -56,7 +56,7 @@ public class LoginController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, User user)
+    public IActionResult Update(Guid id, User user)
     {
         if (id != user.Id)
             return BadRequest();
@@ -71,7 +71,7 @@ public class LoginController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult Delete(Guid id)
     {
         var user = LoginService.Get(id);
     

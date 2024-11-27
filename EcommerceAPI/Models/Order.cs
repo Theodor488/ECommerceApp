@@ -6,8 +6,8 @@ namespace ECommerceAPI.Models
     public partial class Order
     {
         [Key]
-        public int OrderID { get; set; }
-        public int CustomerID { get; set; }
+        public Guid OrderID { get; set; }
+        public Guid CustomerID { get; set; }
         public Nullable<int> TotalAmount { get; set; }
         public Nullable<bool> isCompleted { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
