@@ -29,5 +29,27 @@ namespace EcommerceAPI.Repositories
             await dbContext.SaveChangesAsync();
             return customer;
         }
+
+        public async Task<Customer?> UpdateAsync(Guid id, Customer customer)
+        {
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+
+            if (existingCustomer == null)
+            {
+                return null;
+            }
+
+            existingCustomer.UserName = customer.UserName;
+            existingCustomer.First_Name = customer.First_Name;
+            existingCustomer.Last_Name = customer.Last_Name;
+            existingCustomer.Password = customer.Password;
+            existingCustomer.Gender = customer.Gender;
+            existingCustomer.Email = customer.Email;
+            existingCustomer.Phone = customer.Phone;
+            existingCustomer.Address = customer.Address;
+
+            await dbContext.SaveChangesAsync();
+            return existingCustomer;
+        }
     }
 }

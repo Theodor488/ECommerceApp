@@ -10,6 +10,7 @@ namespace EcommerceAPI.Mappings
         {
             CreateMap<Customer, CustomerDTO>().ReverseMap();
             CreateMap<AddCustomerRequestDTO, Customer>().ReverseMap();
+            CreateMap<UpdateCustomerRequestDTO, Customer>().ReverseMap();
         }
     }
 }

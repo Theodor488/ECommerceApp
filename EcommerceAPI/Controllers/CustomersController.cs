@@ -72,5 +72,25 @@ namespace EcommerceAPI.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = customerDto.UserId }, customerDto);
         }
+
+        // Update Customer
+        // PUT: https://localhost:7143/api/customers/{id}
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
+        {
+            // Map DTO to Domain Model
+            var customerDomainModel = mapper.Map<Customer>(updateCustomerRequestDto);
+
+            // Check if customer exists
+            customerDomainModel = await customerRepository.UpdateAsync(id, customerDomainModel);
+
+            if (customerDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<CustomerDTO>(customerDomainModel));
+        }
     }
 }
