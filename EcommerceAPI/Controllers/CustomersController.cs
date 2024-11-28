@@ -92,5 +92,21 @@ namespace EcommerceAPI.Controllers
 
             return Ok(mapper.Map<CustomerDTO>(customerDomainModel));
         }
+
+        // Delete Customer
+        // DELETE: https://localhost:7143/api/customers/{id}
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
+        {
+            var customerDomainModel = await customerRepository.DeleteAsync(id);
+
+            if (customerDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<CustomerDTO>(customerDomainModel));
+        }
     }
 }

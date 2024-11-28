@@ -51,5 +51,19 @@ namespace EcommerceAPI.Repositories
             await dbContext.SaveChangesAsync();
             return existingCustomer;
         }
+
+        public async Task<Customer?> DeleteAsync(Guid id)
+        {
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+
+            if (existingCustomer == null)
+            {
+                return null;
+            }
+
+            dbContext.Customers.Remove(existingCustomer);
+            await dbContext.SaveChangesAsync();
+            return existingCustomer;
+        }
     }
 }
