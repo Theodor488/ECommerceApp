@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using EcommerceAPI.Models.Domain;
 
 namespace ECommerceAPI.Models
 {
