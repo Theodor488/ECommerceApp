@@ -39,9 +39,12 @@ namespace EcommerceAPI.Repositories
                 return null;
             }
 
+            existingOrder.CustomerID = order.CustomerID;
             existingOrder.TotalAmount = order.TotalAmount;
             existingOrder.IsCompleted = order.IsCompleted;
+            existingOrder.OrderDate = order.OrderDate;
             existingOrder.Delivered = order.Delivered;
+            existingOrder.DeliveryDate = order.DeliveryDate;
             existingOrder.CancelOrder = order.CancelOrder;
 
             await dbContext.SaveChangesAsync();
