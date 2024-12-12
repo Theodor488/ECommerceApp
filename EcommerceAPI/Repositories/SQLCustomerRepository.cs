@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using EcommerceAPI.Models.Domain;
 using ECommerceAPI.Data;
+using EcommerceAPI.Models.Domain;
 
 namespace EcommerceAPI.Repositories
 {

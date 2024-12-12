@@ -12,7 +12,7 @@ namespace EcommerceAPI.Models.Domain
         public bool? Delivered { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public bool? CancelOrder { get; set; }
-        public DateTime? Created { get; set; } = DateTime.Now;
+        //public DateTime? Created { get; set; } = DateTime.Now;
 
         public virtual Customer Customer { get; set; }
     }

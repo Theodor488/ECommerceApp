@@ -18,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
+builder.Services.AddScoped<IOrderRepository, SQLOrderRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

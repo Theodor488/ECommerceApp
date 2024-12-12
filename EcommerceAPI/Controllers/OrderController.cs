@@ -38,6 +38,7 @@ namespace EcommerceAPI.Controllers
             return Ok(mapper.Map<List<OrderDTO>>(orderDomain));
         }
 
+        
         // GET SINGLE ORDER (Get Order By ID)
         // GET: https://localhost:7143/api/orders/{id}
         [HttpGet]
@@ -73,40 +74,41 @@ namespace EcommerceAPI.Controllers
             return CreatedAtAction(nameof(GetById), new { id = orderDto.OrderID}, orderDto);
         }
 
-        // Update Customer
-        // PUT: https://localhost:7143/api/customers/{id}
+        // Update Order
+        // PUT: https://localhost:7143/api/orders/{id}
         [HttpPut]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateOrderRequestDTO updateOrderRequestDto)
         {
             // Map DTO to Domain Model
-            var customerDomainModel = mapper.Map<Customer>(updateCustomerRequestDto);
+            var orderDomainModel = mapper.Map<Order>(updateOrderRequestDto);
 
-            // Check if customer exists
-            customerDomainModel = await customerRepository.UpdateAsync(id, customerDomainModel);
+            // Check if order exists
+            orderDomainModel = await orderRepository.UpdateAsync(id, orderDomainModel);
 
-            if (customerDomainModel == null)
+            if (orderDomainModel == null)
             {
                 return NotFound();
             }
 
-            return Ok(mapper.Map<CustomerDTO>(customerDomainModel));
+            return Ok(mapper.Map<OrderDTO>(orderDomainModel));
         }
 
-        // Delete Customer
-        // DELETE: https://localhost:7143/api/customers/{id}
+        // Delete Order
+        // DELETE: https://localhost:7143/api/orders/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
+        public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateOrderRequestDTO updateOrderRequestDto)
         {
-            var customerDomainModel = await customerRepository.DeleteAsync(id);
+            var orderDomainModel = await orderRepository.DeleteAsync(id);
 
-            if (customerDomainModel == null)
+            if (orderDomainModel == null)
             {
                 return NotFound();
             }
 
-            return Ok(mapper.Map<CustomerDTO>(customerDomainModel));
+            return Ok(mapper.Map<OrderDTO>(orderDomainModel));
         }
+        
     }
 }
