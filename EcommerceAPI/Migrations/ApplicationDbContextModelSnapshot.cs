@@ -22,40 +22,6 @@ namespace EcommerceAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ECommerceAPI.Models.Order", b =>
-                {
-                    b.Property<Guid>("OrderID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("CancelOrder")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("Delivered")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeliveryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("TotalAmount")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("isCompleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("OrderID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("ECommerceAPI.Models.OrderDetail", b =>
                 {
                     b.Property<Guid>("OrderDetailsID")
@@ -218,20 +184,46 @@ namespace EcommerceAPI.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Models.Order", b =>
+            modelBuilder.Entity("EcommerceAPI.Models.Domain.Order", b =>
                 {
-                    b.HasOne("EcommerceAPI.Models.Domain.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Navigation("Customer");
+                    b.Property<bool?>("CancelOrder")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("Delivered")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DeliveryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ECommerceAPI.Models.OrderDetail", b =>
                 {
-                    b.HasOne("ECommerceAPI.Models.Order", "Order")
+                    b.HasOne("EcommerceAPI.Models.Domain.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -261,6 +253,17 @@ namespace EcommerceAPI.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("EcommerceAPI.Models.Domain.Order", b =>
+                {
+                    b.HasOne("EcommerceAPI.Models.Domain.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("ECommerceAPI.Models.Product", b =>

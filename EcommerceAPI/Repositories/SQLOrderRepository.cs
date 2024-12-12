@@ -40,7 +40,7 @@ namespace EcommerceAPI.Repositories
             }
 
             existingOrder.TotalAmount = order.TotalAmount;
-            existingOrder.isCompleted = order.isCompleted;
+            existingOrder.IsCompleted = order.IsCompleted;
             existingOrder.Delivered = order.Delivered;
             existingOrder.CancelOrder = order.CancelOrder;
 
