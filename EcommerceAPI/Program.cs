@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
 builder.Services.AddScoped<IOrderRepository, SQLOrderRepository>();
+builder.Services.AddScoped<IProductRepository, SQLProductRepository>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

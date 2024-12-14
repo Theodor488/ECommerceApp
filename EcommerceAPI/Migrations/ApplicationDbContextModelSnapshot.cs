@@ -22,7 +22,7 @@ namespace EcommerceAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ECommerceAPI.Models.OrderDetail", b =>
+            modelBuilder.Entity("ECommerceAPI.Models.OrderDetails", b =>
                 {
                     b.Property<Guid>("OrderDetailsID")
                         .ValueGeneratedOnAdd()
@@ -53,31 +53,6 @@ namespace EcommerceAPI.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("ECommerceAPI.Models.Product", b =>
-                {
-                    b.Property<Guid>("ProductID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategoryID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShortDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ProductID");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ECommerceAPI.Models.Review", b =>
@@ -221,7 +196,34 @@ namespace EcommerceAPI.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Models.OrderDetail", b =>
+            modelBuilder.Entity("EcommerceAPI.Models.Domain.Product", b =>
+                {
+                    b.Property<Guid>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool?>("IsDiscontinued")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerceAPI.Models.OrderDetails", b =>
                 {
                     b.HasOne("EcommerceAPI.Models.Domain.Order", "Order")
                         .WithMany()
@@ -229,7 +231,7 @@ namespace EcommerceAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceAPI.Models.Product", "Product")
+                    b.HasOne("EcommerceAPI.Models.Domain.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -246,7 +248,7 @@ namespace EcommerceAPI.Migrations
                         .WithMany("Reviews")
                         .HasForeignKey("CustomerID");
 
-                    b.HasOne("ECommerceAPI.Models.Product", "Product")
+                    b.HasOne("EcommerceAPI.Models.Domain.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductID");
 
@@ -266,16 +268,16 @@ namespace EcommerceAPI.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Models.Product", b =>
+            modelBuilder.Entity("EcommerceAPI.Models.Domain.Customer", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("Orders");
 
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("EcommerceAPI.Models.Domain.Customer", b =>
+            modelBuilder.Entity("EcommerceAPI.Models.Domain.Product", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("OrderDetails");
 
                     b.Navigation("Reviews");
                 });
