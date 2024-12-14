@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using ECommerceAPI.Models;
 using ECommerceAPI.Services;
+using EcommerceAPI.Models.Domain;
 
 namespace ECommerceAPI.Controllers;
 

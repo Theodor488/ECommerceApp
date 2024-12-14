@@ -3,7 +3,7 @@ using EcommerceAPI.Models.Domain;
 
 namespace ECommerceAPI.Models
 {
-    public partial class OrderDetail
+    public partial class OrderDetails
     {
         [Key]
         public Guid OrderDetailsID { get; set; }

@@ -1,4 +1,3 @@
-using ECommerceAPI.Models;
 using System;
 using System.IO;
 using System.Collections;
@@ -8,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using EcommerceAPI.Models.Domain;
 
 namespace ECommerceAPI.Services;
 
@@ -23,8 +23,8 @@ public static class ProductService
     {
         Products = new List<Product>
         {
-            new Product { ProductID = Guid.NewGuid(), Name = "Jacket", CategoryID = Guid.NewGuid(), UnitPrice = 45.00m, ShortDescription = "winter jacket for snow and rain." },
-            new Product { ProductID = Guid.NewGuid(), Name = "Toy dinosaur", CategoryID = Guid.NewGuid(), UnitPrice = 23.50m, ShortDescription = "T-Rex toy for children ages 6-12." }
+            new Product { ProductID = Guid.NewGuid(), ProductName = "Jacket", CategoryID = Guid.NewGuid(), UnitPrice = 45.00, ShortDescription = "winter jacket for snow and rain." },
+            new Product { ProductID = Guid.NewGuid(), ProductName = "Toy dinosaur", CategoryID = Guid.NewGuid(), UnitPrice = 23.50, ShortDescription = "T-Rex toy for children ages 6-12." }
         };
     }
 
