@@ -20,7 +20,7 @@ namespace EcommerceAPI.Repositories
 
         public async Task<Customer?> GetByGuidAsync(Guid id)
         {
-            return await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+            return await dbContext.Customers.FirstOrDefaultAsync(x => x.CustomerID == id);
         }
 
         public async Task<Customer> CreateAsync(Customer customer)
@@ -32,7 +32,7 @@ namespace EcommerceAPI.Repositories
 
         public async Task<Customer?> UpdateAsync(Guid id, Customer customer)
         {
-            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.CustomerID == id);
 
             if (existingCustomer == null)
             {
@@ -54,7 +54,7 @@ namespace EcommerceAPI.Repositories
 
         public async Task<Customer?> DeleteAsync(Guid id)
         {
-            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.UserId == id);
+            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(x => x.CustomerID == id);
 
             if (existingCustomer == null)
             {

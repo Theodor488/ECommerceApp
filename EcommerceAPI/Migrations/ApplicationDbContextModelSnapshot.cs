@@ -22,78 +22,6 @@ namespace EcommerceAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ECommerceAPI.Models.OrderDetails", b =>
-                {
-                    b.Property<Guid>("OrderDetailsID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("OrderID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("OrderDetailsID");
-
-                    b.HasIndex("OrderID");
-
-                    b.HasIndex("ProductID");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("ECommerceAPI.Models.Review", b =>
-                {
-                    b.Property<Guid>("ReviewID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ProductID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Review1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ReviewID");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("ProductID");
-
-                    b.ToTable("Reviews");
-                });
-
             modelBuilder.Entity("ECommerceAPI.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -115,7 +43,7 @@ namespace EcommerceAPI.Migrations
 
             modelBuilder.Entity("EcommerceAPI.Models.Domain.Customer", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("CustomerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -154,7 +82,7 @@ namespace EcommerceAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("CustomerID");
 
                     b.ToTable("Customers");
                 });
@@ -185,6 +113,9 @@ namespace EcommerceAPI.Migrations
 
                     b.Property<DateTime?>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
@@ -223,40 +154,6 @@ namespace EcommerceAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ECommerceAPI.Models.OrderDetails", b =>
-                {
-                    b.HasOne("EcommerceAPI.Models.Domain.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EcommerceAPI.Models.Domain.Product", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ECommerceAPI.Models.Review", b =>
-                {
-                    b.HasOne("EcommerceAPI.Models.Domain.Customer", "Customer")
-                        .WithMany("Reviews")
-                        .HasForeignKey("CustomerID");
-
-                    b.HasOne("EcommerceAPI.Models.Domain.Product", "Product")
-                        .WithMany("Reviews")
-                        .HasForeignKey("ProductID");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("EcommerceAPI.Models.Domain.Order", b =>
                 {
                     b.HasOne("EcommerceAPI.Models.Domain.Customer", "Customer")
@@ -271,15 +168,6 @@ namespace EcommerceAPI.Migrations
             modelBuilder.Entity("EcommerceAPI.Models.Domain.Customer", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("EcommerceAPI.Models.Domain.Product", b =>
-                {
-                    b.Navigation("OrderDetails");
-
-                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

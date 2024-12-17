@@ -70,7 +70,7 @@ namespace EcommerceAPI.Controllers
             // Map Domain Model back to DTO
             var customerDto = mapper.Map<CustomerDTO>(customerDomainModel);
 
-            return CreatedAtAction(nameof(GetById), new { id = customerDto.UserId }, customerDto);
+            return CreatedAtAction(nameof(GetById), new { id = customerDto.CustomerID }, customerDto);
         }
 
         // Update Customer

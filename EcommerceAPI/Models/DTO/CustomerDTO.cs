@@ -5,7 +5,7 @@ namespace EcommerceAPI.Models.DTO
 {
     public class CustomerDTO
     {
-        public Guid UserId { get; set; }
+        public Guid CustomerID { get; set; }
         public string UserName { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }

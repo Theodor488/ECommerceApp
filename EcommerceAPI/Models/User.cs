@@ -4,6 +4,7 @@ namespace ECommerceAPI.Models;
 
 public class User
 {
+    // TODO: Connect ID to CustomerID
     [Key]
     public Guid Id { get; set; }
     [Required]
