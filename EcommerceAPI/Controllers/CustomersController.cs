@@ -28,12 +28,12 @@ namespace EcommerceAPI.Controllers
         }
 
         // GET ALL CUSTOMERS
-        // GET: https://localhost:7143/api/customers
+        // GET: https://localhost:7143/api/customers?filterOn=Name&filterQuery=Track
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery)
         {
             // Get Data From Database - Domain models
-            var customersDomain = await customerRepository.GetAllAsync();
+            var customersDomain = await customerRepository.GetAllAsync(filterOn, filterQuery);
 
             // Map Domain Models to DTOs and Return DTOs
             return Ok(mapper.Map<List<CustomerDTO>>(customersDomain));

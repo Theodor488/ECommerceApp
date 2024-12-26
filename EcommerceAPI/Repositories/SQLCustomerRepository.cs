@@ -13,9 +13,20 @@ namespace EcommerceAPI.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<List<Customer>> GetAllAsync()
+        public async Task<List<Customer>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
         {
-            return await dbContext.Customers.ToListAsync();
+            var customers = dbContext.Customers.Include("UserName").Include("First_Name").Include("Last_Name").AsQueryable();
+            
+            // Filtering
+            if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false) 
+            {
+                if (filterOn.Equals("UserName", StringComparison.OrdinalIgnoreCase))
+                {
+                    customers = customers.Where(x => x.UserName.Contains(filterQuery));
+                }
+            }
+
+            return await customers.ToListAsync();
         }
 
         public async Task<Customer?> GetByGuidAsync(Guid id)
