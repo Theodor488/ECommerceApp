@@ -2,6 +2,7 @@
 using EcommerceAPI.Models.Domain;
 using EcommerceAPI.Models.DTO;
 using EcommerceAPI.Repositories;
+using EcommerceAPI.CustomActionFilters;
 using ECommerceAPI.Data;
 using ECommerceAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -60,6 +61,7 @@ namespace EcommerceAPI.Controllers
         // POST To Create New Order
         // POST: https://localhost:7143/api/orders
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] OrderDTO addOrderRequestDTO)
         {
             // Map or Convert DTO to Domain Model
@@ -78,6 +80,7 @@ namespace EcommerceAPI.Controllers
         // PUT: https://localhost:7143/api/orders/{id}
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateOrderRequestDTO updateOrderRequestDto)
         {
             // Map DTO to Domain Model
