@@ -15,7 +15,7 @@ namespace EcommerceAPI.Repositories
 
         public async Task<List<Customer>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
         {
-            var customers = dbContext.Customers.Include("UserName").Include("First_Name").Include("Last_Name").AsQueryable();
+            var customers = dbContext.Customers.AsQueryable();
             
             // Filtering
             if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false) 
