@@ -28,12 +28,13 @@ namespace EcommerceAPI.Controllers
         }
 
         // GET ALL PRODUCTS
-        // GET: https://localhost:7143/api/product?filterOn=Name&filterQuery=Track
+        // GET: https://localhost:7143/api/product?filterOn=Name&filterQuery=Track&sortBy=Name&isAscending=true
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery)
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
+            [FromQuery] string? sortBy, [FromQuery] bool? isAscending)
         {
             // Get Data From Database - Domain models
-            var productDomain = await productRepository.GetAllAsync(filterOn, filterQuery);
+            var productDomain = await productRepository.GetAllAsync(filterOn, filterQuery, sortBy, isAscending ?? true);
 
             // Map Domain Models to DTOs and Return DTOs
             return Ok(mapper.Map<List<ProductDTO>>(productDomain));
