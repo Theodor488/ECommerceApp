@@ -13,7 +13,8 @@ namespace EcommerceAPI.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<List<Customer>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
+        public async Task<List<Customer>> GetAllAsync(string? filterOn = null, string? filterQuery = null,
+            string? sortBy = null, bool isAscending = true)
         {
             var customers = dbContext.Customers.AsQueryable();
             
@@ -23,6 +24,19 @@ namespace EcommerceAPI.Repositories
                 if (filterOn.Equals("UserName", StringComparison.OrdinalIgnoreCase))
                 {
                     customers = customers.Where(x => x.UserName.Contains(filterQuery));
+                }
+            }
+
+            // Sorting
+            if (string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                if (sortBy.Equals("UserName", StringComparison.OrdinalIgnoreCase))
+                {
+                    customers = isAscending ? customers.OrderBy(x => x.UserName) : customers.OrderByDescending(x => x.UserName);
+                }
+                else if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    customers = isAscending ? customers.OrderBy(x => x.First_Name) : customers.OrderByDescending(x => x.First_Name);
                 }
             }
 
