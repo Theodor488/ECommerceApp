@@ -15,14 +15,14 @@ namespace EcommerceAPI.Repositories
 
         public async Task<List<Product>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
         {
-            var products = dbContext.Products.Include("UnitPrice").Include("ShortDescription").AsQueryable();
+            var products = dbContext.Products.AsQueryable();
 
             // Filtering
             if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false) 
             {
-                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                if (filterOn.Contains("Name", StringComparison.OrdinalIgnoreCase))
                 {
-                    products = products.Where(x => x.ProductName.Equals(filterQuery));
+                    products = products.Where(x => x.ProductName.Contains(filterQuery));
                 }
             }
 
