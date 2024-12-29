@@ -488,3 +488,5 @@ $RECYCLE.BIN/
 # Migrations Folder
 Migrations/
 
+appsettings.json
+/obj/
