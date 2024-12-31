@@ -7,6 +7,7 @@ using EcommerceAPI.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace EcommerceAPI.Controllers
@@ -14,6 +15,7 @@ namespace EcommerceAPI.Controllers
     // https://localhost:7143/api/customers
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustomersController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
