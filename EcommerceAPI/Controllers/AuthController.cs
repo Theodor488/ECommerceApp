@@ -1,4 +1,5 @@
-﻿using EcommerceAPI.Models.DTO;
+﻿using EcommerceAPI.DTO;
+using EcommerceAPI.Models.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,24 @@ namespace EcommerceAPI.Controllers
                 }
             }
             return BadRequest("Something went wrong");
+        }
+
+        // POST: /api/Auth/Login
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDTO loginRequestDTO)
+        {
+            var user = await userManager.FindByEmailAsync(loginRequestDTO.Username);
+            if (user != null)
+            {
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
+                if (checkPasswordResult)
+                {
+                    // Create Token
+                    return Ok();
+                }
+            }
+            return BadRequest("Username or password was incorrect.");
         }
     }
 }
