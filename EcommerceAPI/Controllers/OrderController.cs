@@ -8,6 +8,7 @@ using ECommerceAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceAPI.Controllers
 {
@@ -30,6 +31,7 @@ namespace EcommerceAPI.Controllers
         // GET ALL ORDERs
         // GET: https://localhost:7143/api/orders
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll()
         {
             // Get Data From Database - Domain models
@@ -44,6 +46,7 @@ namespace EcommerceAPI.Controllers
         // GET: https://localhost:7143/api/orders/{id}
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             // Get Order Domain Model From Database
@@ -62,6 +65,7 @@ namespace EcommerceAPI.Controllers
         // POST: https://localhost:7143/api/orders
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] OrderDTO addOrderRequestDTO)
         {
             // Map or Convert DTO to Domain Model
@@ -81,6 +85,7 @@ namespace EcommerceAPI.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateOrderRequestDTO updateOrderRequestDto)
         {
             // Map DTO to Domain Model
@@ -101,6 +106,7 @@ namespace EcommerceAPI.Controllers
         // DELETE: https://localhost:7143/api/orders/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateOrderRequestDTO updateOrderRequestDto)
         {
             var orderDomainModel = await orderRepository.DeleteAsync(id);

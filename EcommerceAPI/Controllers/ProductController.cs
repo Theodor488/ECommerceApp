@@ -8,6 +8,7 @@ using ECommerceAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceAPI.Controllers
 {
@@ -30,6 +31,7 @@ namespace EcommerceAPI.Controllers
         // GET ALL PRODUCTS
         // GET: https://localhost:7143/api/product?filterOn=Name&filterQuery=Track&sortBy=Name&isAscending=true
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
             [FromQuery] string? sortBy, [FromQuery] bool? isAscending)
         {
@@ -44,6 +46,7 @@ namespace EcommerceAPI.Controllers
         // GET: https://localhost:7143/api/product/{id}
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             // Get Product Domain Model From Database
@@ -62,6 +65,7 @@ namespace EcommerceAPI.Controllers
         // POST: https://localhost:7143/api/product
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] AddProductRequestDTO addProductRequestDTO)
         {
             // Map or Convert DTO to Domain Model
@@ -81,6 +85,7 @@ namespace EcommerceAPI.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateProductRequestDTO updateProductRequestDto)
         {
             // Map DTO to Domain Model
@@ -101,6 +106,7 @@ namespace EcommerceAPI.Controllers
         // DELETE: https://localhost:7143/api/product/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateProductRequestDTO updateProductRequestDto)
         {
             var productDomainModel = await productRepository.DeleteAsync(id);

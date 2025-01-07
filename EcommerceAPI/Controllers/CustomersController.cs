@@ -15,7 +15,6 @@ namespace EcommerceAPI.Controllers
     // https://localhost:7143/api/customers
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CustomersController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
@@ -32,6 +31,7 @@ namespace EcommerceAPI.Controllers
         // GET ALL CUSTOMERS
         // GET: https://localhost:7143/api/customers?filterOn=Name&filterQuery=Track&sortBy=Name&isAscending=true
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
             [FromQuery] string? sortBY, [FromQuery] bool? isAscending)
         {
@@ -46,6 +46,7 @@ namespace EcommerceAPI.Controllers
         // GET: https://localhost:7143/api/customers/{id}
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             // Get Customer Domain Model From Database
@@ -64,6 +65,7 @@ namespace EcommerceAPI.Controllers
         // POST: https://localhost:7143/api/customers
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create([FromBody] AddCustomerRequestDTO addCustomerRequestDTO)
         {
             // Map or Convert DTO to Domain Model
@@ -83,6 +85,7 @@ namespace EcommerceAPI.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
         {
             // Map DTO to Domain Model
@@ -103,6 +106,7 @@ namespace EcommerceAPI.Controllers
         // DELETE: https://localhost:7143/api/customers/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id, [FromBody] UpdateCustomerRequestDTO updateCustomerRequestDto)
         {
             var customerDomainModel = await customerRepository.DeleteAsync(id);
